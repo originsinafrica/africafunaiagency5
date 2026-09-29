@@ -244,17 +244,17 @@ const advisorAngles = [60, 180, 300];
 const agentAngles = [22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5];
 
 const cTalents = talents.map((t, i) => {
-  const [x, y] = polar(200, talentAngles[i]!);
+  const [x, y] = polar(200, talentAngles[i] ?? 0);
   return { ...t, kind: "talent" as NodeKind, id: t.id, label: t.id === "fleur" ? "Fleur" : t.name, sub: t.role, blurb: t.short, x, y };
 });
 
 const cAdvisers = advisers.map((a, i) => {
-  const [x, y] = polar(320, advisorAngles[i]!);
+  const [x, y] = polar(320, advisorAngles[i] ?? 0);
   return { ...a, kind: "advisor" as NodeKind, id: a.id, label: a.name, sub: a.role, blurb: a.domains, x, y };
 });
 
 const cAgents = agents.map((a, i) => {
-  const [x, y] = polar(440, agentAngles[i]!);
+  const [x, y] = polar(440, agentAngles[i] ?? 0);
   return { ...a, kind: "agent" as NodeKind, id: a.id, label: a.name, sub: `Agent ${a.number}`, blurb: a.mission, x, y };
 });
 
@@ -281,7 +281,7 @@ const edges: [string, string][] = [
 ];
 
 function nodeById(id: string) {
-  return allNodes.find((n) => n.id === id)!;
+  return allNodes.find((n) => n.id === id) ?? coreNode;
 }
 
 // ---------- Composants ----------
@@ -458,12 +458,12 @@ function Constellation() {
                     <button onClick={() => setActiveId(null)} className="text-cream/50 transition-colors hover:text-sun" aria-label="Fermer la fiche">✕</button>
                   </div>
                   <p className="mt-5 text-sm leading-relaxed text-cream/80">
-                    {active.kind === "core" ? active.blurb : active.kind === "agent" ? agents.find((a) => a.id === active.id)!.mission : (active as typeof cTalents[number]).domains}
+                    {active.kind === "core" ? active.blurb : active.kind === "agent" ? agents.find((a) => a.id === active.id)?.mission ?? active.blurb : (active as typeof cTalents[number]).domains}
                   </p>
                   {active.kind === "agent" && (
                     <div className="mt-4 border border-sky/30 bg-navy/60 px-4 py-3">
                       <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-sky">Enveloppe mensuelle estimative</p>
-                      <p className="mt-1 font-display text-xl text-cream">{agents.find((a) => a.id === active.id)!.budget}</p>
+                      <p className="mt-1 font-display text-xl text-cream">{agents.find((a) => a.id === active.id)?.budget ?? "À définir"}</p>
                     </div>
                   )}
                   {activeConnected.length > 0 && (
@@ -494,8 +494,10 @@ function Constellation() {
 // ---------- Agent fiche ----------
 
 function AgentExplorer() {
-  const [activeId, setActiveId] = useState(agents[0]!.id);
-  const agent = agents.find((item) => item.id === activeId) ?? agents[0]!;
+  const firstAgent = agents[0];
+  const [activeId, setActiveId] = useState(firstAgent?.id ?? "da");
+  const agent = agents.find((item) => item.id === activeId) ?? firstAgent;
+  if (!agent) return null;
   return (
     <div className="mt-12 grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.35fr)]">
       <div className="grid grid-cols-2 gap-px bg-cream/15 sm:grid-cols-4 lg:grid-cols-2">
