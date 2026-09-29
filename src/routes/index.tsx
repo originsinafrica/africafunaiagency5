@@ -317,7 +317,7 @@ function Constellation() {
           <SectionKicker tone="text-sky lg:col-span-3">Architecture collaborative</SectionKicker>
           <div className="lg:col-span-9">
             <h2 className="font-display text-5xl leading-[0.95] md:text-7xl">Chaque force se relie.<br /><em className="text-sun">La création circule.</em></h2>
-            <p className="mt-6 max-w-2xl leading-relaxed text-cream/70">Une constellation vivante : chaque personne se relie à plusieurs intelligences, chaque agent sert plusieurs opérationnels et chaque conseiller collabore avec plusieurs fonctions. Survolez la constellation, puis cliquez sur un élément pour ouvrir sa fiche.</p>
+            <p className="mt-6 max-w-2xl leading-relaxed text-cream/70">Une constellation vivante : chaque personne se relie à plusieurs intelligences, chaque agent sert plusieurs opérationnels et chaque conseiller collabore avec plusieurs fonctions. <span className="hidden sm:inline">Survolez la constellation, puis cliquez sur un élément pour ouvrir sa fiche.</span><span className="sm:hidden">Touchez un élément pour ouvrir sa fiche.</span></p>
           </div>
         </div>
 
@@ -422,7 +422,7 @@ function Constellation() {
                 </svg>
 
                 <div className="mt-1 flex min-h-14 items-center justify-center px-3 text-center text-sm text-cream/70 sm:mt-4">
-                  <span>{focusId ? nodeById(focusId).blurb : "Survolez un élément pour lire son rôle — cliquez pour ouvrir sa fiche."}</span>
+                  <span>{focusId ? nodeById(focusId).blurb : <><span className="hidden sm:inline">Survolez un élément pour lire son rôle — cliquez pour ouvrir sa fiche.</span><span className="sm:hidden">Touchez un cercle pour lire son rôle et ouvrir sa fiche.</span></>}</span>
                 </div>
                 <div className="mt-3 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[10px] font-semibold uppercase tracking-[0.15em]">
                   <span className="flex items-center gap-2"><i className="size-3 rounded-full bg-sun" /> Opérationnels · l'action</span>
@@ -792,9 +792,9 @@ function Index() {
             </div>
 
             {/* Centre commun */}
-            <div className="relative mt-5 overflow-hidden">
-              <img src={statuesImage} alt="Trois statues royales s'échappant d'un musée" className="h-[24rem] w-full object-cover object-center sm:h-[30rem] md:h-[38rem]" />
-              <div className="absolute inset-0 flex items-end justify-center bg-card-overlay px-6 pb-8 text-center md:pb-12">
+            <div className="relative mt-5 overflow-hidden bg-ink">
+              <img src={statuesImage} alt="Trois statues royales s'échappant d'un musée" className="relative aspect-[1312/816] w-full object-contain md:h-[38rem] md:aspect-auto md:object-cover md:object-center" />
+              <div className="relative flex items-end justify-center bg-ink px-6 py-8 text-center md:absolute md:inset-0 md:bg-card-overlay md:pb-12 md:pt-0">
                 <div>
                   <p className="font-display text-3xl leading-tight text-cream md:text-5xl">Un même pays.<br /><span className="text-sun">Des milliers de façons de le découvrir.</span></p>
                   <div className="mt-7 flex flex-wrap items-center justify-center gap-3 font-display text-xl md:text-2xl">
