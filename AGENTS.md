@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Preserve the imported Africafun site as a single scrolling route because its navigation and storytelling are intentionally section-based.
+- Keep supplied site imagery in Lovable Asset pointers so the media remains project-scoped and lightweight.
