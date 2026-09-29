@@ -1,0 +1,13 @@
+{
+  "source": "https://github.com/originsinafrica/africafunaiagency3",
+  "capabilities": [
+    {"capability":"application code and routes","source":"GitHub repository","outcome":"migrate","status":"in_progress","next_action":"Import the complete single-page site"},
+    {"capability":"uploaded image files","source":"user uploads","outcome":"migrate","status":"in_progress","next_action":"Create project asset pointers and wire all four images"},
+    {"capability":"interactive constellation","source":"GitHub repository","outcome":"migrate and adapt","status":"in_progress","next_action":"Preserve desktop behavior and add mobile layout"},
+    {"capability":"database records","source":"inspection","outcome":"not_applicable","status":"verified","next_action":"None; no database detected"},
+    {"capability":"authentication and users","source":"inspection","outcome":"not_applicable","status":"verified","next_action":"None; no authentication detected"},
+    {"capability":"external providers, callbacks, webhooks and schedules","source":"inspection","outcome":"not_applicable","status":"verified","next_action":"None detected"},
+    {"capability":"cutover","source":"Lovable preview","outcome":"preview replacement","status":"in_progress","next_action":"Verify the imported page in preview"},
+    {"capability":"verification","source":"build and browser","outcome":"verify","status":"pending","next_action":"Check desktop and mobile rendering and interactions"}
+  ]
+}
